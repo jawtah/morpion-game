@@ -120,6 +120,7 @@ function Square (props){
     if (winner){
       status = winner +'a gagné'
     }
+    else if (stepNumber === 9){ status='match null'}
     else {
        status = 'Prochain joueur:' + (xIsNext ? 'X':'O')
     }
