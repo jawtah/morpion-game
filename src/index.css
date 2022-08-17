@@ -40,7 +40,10 @@ body {
     background: #ddd;
   }
 
- 
+ .winner{
+  background-color: red;
+  color:red;
+ }
   
   .game {
     display: flex;

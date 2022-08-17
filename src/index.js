@@ -74,12 +74,21 @@ function Square (props){
     const [history,setHistory]= useState([{squares:Array(9).fill(null)}]);
     const [xIsNext,setXIsNext]= useState('true');
     const [stepNumber,setStepNumber]= useState(0);
+
+    // function handleRestartGame() {
+    //   setXIsNext(true);
+    //   setHistory(Array(9).fill(null));
+      
+    // }
+  
     
     const handleClick = useCallback((i) =>{
         const historique = history.slice(0,stepNumber +1);
         const current = historique[historique.length - 1];
         const squares = current.squares.slice();
+       
         if (calculateWinner(squares) || squares[i]){
+          console.log(squares)
             return;
         }
         squares[i]= xIsNext ? 'X':'O';
@@ -100,7 +109,8 @@ function Square (props){
 
      const current = history[stepNumber];
      const winner = calculateWinner(current.squares);
-      
+     console.log(current.squares)
+     
     
     
     const moves = history.map((step,move) => {
@@ -117,10 +127,10 @@ function Square (props){
 
   
     let status = null;
+    
     if (winner){
-      status = winner +'a gagné'
-    }
-    else if (stepNumber === 9){ status='match null'}
+      status = winner +'a gagné'}    
+    else if (stepNumber === 9){ status ='match null'}
     else {
        status = 'Prochain joueur:' + (xIsNext ? 'X':'O')
     }
@@ -138,6 +148,17 @@ function Square (props){
             <div>{status}</div>
             <ol>{moves}</ol>
           </div>
+          <div className="game-info">
+            <button
+              onClick={() => {
+
+              document.location.reload(true);
+            }} >
+            ReStart
+            </button>
+
+          </div>
+          
         </div>
       );
     
@@ -147,5 +168,6 @@ function Square (props){
   
    const root = ReactDOM.createRoot(document.getElementById("root"));
    root.render(<Game />);
-  
+
+   
  
